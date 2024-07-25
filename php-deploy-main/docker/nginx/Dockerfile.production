@@ -1,0 +1,17 @@
+# используем официальный образ Nginx
+FROM nginx:stable-alpine
+
+# устанавливаем рабочую директорию
+WORKDIR /var/www/html
+
+# копируем файлы приложения в контейнер
+COPY . .
+
+# копируем конфигурационный файл Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# открываем порт 80
+EXPOSE 80
+
+# запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
